@@ -81,35 +81,49 @@ mouse_filter = 1
 theme_type_variation = &"detail_list"
 
 [node name="DetailList" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/PanelContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 50
 
-[node name="SizingDetails" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/PanelContainer/DetailList"]
-unique_name_in_owner = true
+[node name="VBoxContainer" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/PanelContainer/DetailList"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/PanelContainer/DetailList/SizingDetails"]
+[node name="Title" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/PanelContainer/DetailList/VBoxContainer"]
 layout_mode = 2
 text = "Walls :"
 
-[node name="MockupDetails" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/PanelContainer/DetailList"]
+[node name="SizingDetails" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/PanelContainer/DetailList/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_constants/separation = 5
 
-[node name="Title" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/PanelContainer/DetailList/MockupDetails"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/PanelContainer/DetailList"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/PanelContainer/DetailList/VBoxContainer2"]
 layout_mode = 2
 text = "Designs :"
 
-[node name="MaterialDetails" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/PanelContainer/DetailList"]
+[node name="MockupDetails" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/PanelContainer/DetailList/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_constants/separation = 5
 
-[node name="Title" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/PanelContainer/DetailList/MaterialDetails"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/PanelContainer/DetailList"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/PanelContainer/DetailList/VBoxContainer3"]
 layout_mode = 2
 text = "Materials :"
 
+[node name="MaterialDetails" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/PanelContainer/DetailList/VBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 5
+
 [node name="Total" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/PanelContainer/DetailList"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Total :"
 

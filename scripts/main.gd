@@ -13,6 +13,7 @@ const FORWARD = preload("res://assets/reply-1.png")
 @onready var mockup_details: VBoxContainer = %MockupDetails
 @onready var material_details: VBoxContainer = %MaterialDetails
 @onready var sizing_details: VBoxContainer = %SizingDetails
+@onready var total: Label = %Total
 # Type
 @onready var type_choose: PanelContainer = %TypeChoose
 @onready var service: Label = %Type
@@ -112,6 +113,7 @@ func _on_add_wall_pressed() -> void :
 		input_detail.value = 1
 		input_rate.text = ""
 
+		getTotal(sizing_details, mockup_details, material_details)
 
 func _on_input_detail_value_changed(_value: float) -> void:
 	label_mural_detail.text = sliderDescription()
@@ -141,6 +143,8 @@ func _on_add_design_pressed() -> void:
 		input_number.text = ""		
 		input_price.text = ""
 		input_name.text = ""
+		
+		getTotal(sizing_details, mockup_details, material_details)
 
 func _on_check_button_toggled(toggled_on: bool) -> void :
 	if toggled_on:
@@ -162,17 +166,43 @@ func _on_add_material_pressed() -> void :
 					
 		input_material_name.text = ""
 		input_material_price.text = ""
-		input_material_quantity.text = ""		
+		input_material_quantity.text = ""
+		
+		getTotal(sizing_details, mockup_details, material_details)
+		
+func getTotal(vbox1: VBoxContainer, vbox2: VBoxContainer, vbox3: VBoxContainer) -> void:
+	var total_regex := RegEx.new()
+	var total_amount : float = 0
+	total_regex.compile("₱(\\d+)$")
+	var sizing_parent: Array = vbox1.get_children()
+	var mockup_parent: Array = vbox2.get_children()
+	var material_parent: Array = vbox3.get_children()
+	
+	if sizing_parent.size() > 0:		
+		for wall: Variant in sizing_parent:
+			if !wall.is_queued_for_deletion():
+				total_amount += total_regex.search(wall.get_child(0).text).get_string(1).to_float()			
+	if mockup_parent.size() > 0:		
+		for wall: Variant in mockup_parent:
+			if !wall.is_queued_for_deletion():
+				total_amount += total_regex.search(wall.get_child(0).text).get_string(1).to_float()
+	if material_parent.size() > 0:		
+		for wall: Variant in material_parent:
+			if !wall.is_queued_for_deletion():
+				total_amount += total_regex.search(wall.get_child(0).text).get_string(1).to_float()	
+	
+	total.text = "Total: ₱" + str(total_amount)			
 		
 func _on_delete_wall_pressed(hbox: HBoxContainer) -> void :
 	hbox.queue_free()
+	getTotal(sizing_details, mockup_details, material_details)
 
 func setUpNodes(new_hbox: HBoxContainer, new_delete: Button, new_wall: Label, attach_list: Variant) -> void:
 	new_hbox.add_child(new_wall)
 	new_hbox.add_child(new_delete)
 	attach_list.add_child(new_hbox)			
 	new_delete.set_button_icon(DELETE_ICON)
-	new_delete.set_theme_type_variation("DeleteButton")					
+	new_delete.set_theme_type_variation("DeleteButton")
 	new_wall.set_h_size_flags(Control.SIZE_EXPAND_FILL)
 	new_delete.pressed.connect(self._on_delete_wall_pressed.bind(new_hbox))
 	

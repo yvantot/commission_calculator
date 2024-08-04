@@ -1,30 +1,21 @@
 extends Control
 
-# Note, never start exporting until you're fucking sure of your scene tree, it will be a big mess
-# Trying to figure out why your nodes are null
-# Also, always use static typing
-# Also, use unique_names
-
 # Assets
 const DELETE_ICON := preload("res://assets/delete.png")
 const FINISH = preload("res://assets/finish.png")
 const FORWARD = preload("res://assets/reply-1.png")
-
 # Header
-@onready var header_title := $Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/Header/HeaderTitle
 @onready var forward: Button = %Forward
 @onready var header: HBoxContainer = %Header
-
+@onready var header_title: Label = %HeaderTitle
 # Detail
 @onready var detail_list: VBoxContainer = %DetailList
 @onready var mockup_details: VBoxContainer = %MockupDetails
 @onready var material_details: VBoxContainer = %MaterialDetails
 @onready var sizing_details: VBoxContainer = %SizingDetails
-
 # Type
 @onready var type_choose: PanelContainer = %TypeChoose
 @onready var service: Label = %Type
-
 # Mural Imports
 @onready var mural_area: VBoxContainer = %MuralArea
 @onready var mural_mockup: VBoxContainer = %MuralMockup
@@ -48,21 +39,17 @@ const FORWARD = preload("res://assets/reply-1.png")
 @onready var input_material_quantity: LineEdit = %InputMaterialQuantity
 @onready var input_material_price: LineEdit = %InputMaterialPrice
 
+# Var States
 var mural_pages := []
 const avail_comms := ["Mural", "Painting", "Crochet", "Sculpting"]
 const mural_titles := ["Price For?", "Mural Size & Rate", "Design Needs?", "Needed Materials"]
-
-# Var States
 var current_comms := 0
 var current_page := 0
 
 func _ready() -> void :
 	mural_pages = [type_choose, mural_area, mural_mockup, mural_materials]
-	
-	# Disable every pages
 	for i in range(1, mural_pages.size()):
-		mural_pages[i].visible = false
-		
+		mural_pages[i].visible = false		
 	mural_pages[current_page].visible = true
 
 # Mural Functions

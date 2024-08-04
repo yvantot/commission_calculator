@@ -1,0 +1,418 @@
+[gd_scene load_steps=12 format=3 uid="uid://d1vn75t4dlc2c"]
+
+[ext_resource type="Theme" uid="uid://bylakh23f6f8b" path="res://dark_theme.tres" id="1_ulxqq"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="2_l55bw"]
+[ext_resource type="Texture2D" uid="uid://b0shko2hvsnuf" path="res://assets/reply.png" id="2_vla6e"]
+[ext_resource type="Texture2D" uid="uid://xiy2lnhhtneu" path="res://assets/reply-1.png" id="3_33gm2"]
+[ext_resource type="Texture2D" uid="uid://c4ki4x2r15ia2" path="res://assets/arrow_circle_right.png" id="4_65x2t"]
+[ext_resource type="Texture2D" uid="uid://bg5if515frslc" path="res://assets/add_circle.png" id="5_26vts"]
+[ext_resource type="StyleBox" uid="uid://cn8ja6d1dixal" path="res://themes/Button.tres" id="6_74fxf"]
+[ext_resource type="StyleBox" uid="uid://d0jw1dfmx5wro" path="res://themes/Button_hover.tres" id="7_ch878"]
+[ext_resource type="StyleBox" uid="uid://c5wh358v7wa2a" path="res://themes/Button_pressed.tres" id="8_6irkf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nm6fl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6k147"]
+
+[node name="CommissionCalculator" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ulxqq")
+script = ExtResource("2_l55bw")
+
+[node name="Screen" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="Screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0901961, 0.211765, 0.145098, 1)
+
+[node name="AllComponents" type="VBoxContainer" parent="Screen/Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Screen/Background/AllComponents"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Screen/Background/AllComponents/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CommissionDetails" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="DetailTitle" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.274388, 0.534651, 0.390787, 1)
+text = "Commission Details"
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_type_variation = &"detail_list"
+
+[node name="DetailList" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="SizingDetails" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/PanelContainer/DetailList"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/PanelContainer/DetailList/SizingDetails"]
+layout_mode = 2
+text = "Walls :"
+
+[node name="MockupDetails" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/PanelContainer/DetailList"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/PanelContainer/DetailList/MockupDetails"]
+layout_mode = 2
+text = "Designs :"
+
+[node name="MaterialDetails" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/PanelContainer/DetailList"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/PanelContainer/DetailList/MaterialDetails"]
+layout_mode = 2
+text = "Materials :"
+
+[node name="Total" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/PanelContainer/DetailList"]
+layout_mode = 2
+text = "Total :"
+
+[node name="QuestionnaireBG" type="PanelContainer" parent="Screen/Background/AllComponents"]
+custom_minimum_size = Vector2(640, 500)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Screen/Background/AllComponents/QuestionnaireBG"]
+layout_mode = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 0
+
+[node name="Questionnaire" type="VBoxContainer" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Header" type="HBoxContainer" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Back" type="Button" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/Header"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_type_variation = &"navigate_btn"
+icon = ExtResource("2_vla6e")
+
+[node name="HeaderTitle" type="Label" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 40
+text = "Price For?"
+horizontal_alignment = 1
+
+[node name="Forward" type="Button" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_type_variation = &"navigate_btn"
+icon = ExtResource("3_33gm2")
+
+[node name="TypeChoose" type="PanelContainer" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+theme_type_variation = &"QuestionBox"
+
+[node name="MarginContainer" type="MarginContainer" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/TypeChoose"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/TypeChoose/MarginContainer"]
+layout_mode = 2
+
+[node name="Type" type="Label" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/TypeChoose/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+theme_type_variation = &"TextOnWhite"
+theme_override_font_sizes/font_size = 24
+text = "Mural"
+
+[node name="NextType" type="Button" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/TypeChoose/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_type_variation = &"SimpleButton"
+
+[node name="TextureRect" type="TextureRect" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/TypeChoose/MarginContainer/HBoxContainer/NextType"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -36.0
+offset_right = 36.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(36, 36)
+texture = ExtResource("4_65x2t")
+
+[node name="MuralArea" type="VBoxContainer" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[node name="Grid" type="GridContainer" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralArea"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/h_separation = 30
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="Height" type="Label" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralArea/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Height | ft"
+horizontal_alignment = 1
+
+[node name="Width" type="Label" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralArea/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Width | ft"
+horizontal_alignment = 1
+
+[node name="InputHeight" type="LineEdit" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralArea/Grid"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "e.g:  7"
+max_length = 3
+
+[node name="InputWidth" type="LineEdit" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralArea/Grid"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "e.g: 8"
+max_length = 3
+
+[node name="LabelMuralDetail" type="Label" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralArea/Grid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Simple"
+horizontal_alignment = 1
+
+[node name="Rate" type="Label" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralArea/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Rate | ₱"
+horizontal_alignment = 1
+
+[node name="InputDetail" type="HSlider" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralArea/Grid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+min_value = 1.0
+max_value = 3.0
+value = 1.0
+
+[node name="InputRate" type="LineEdit" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralArea/Grid"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "e.g: 150"
+max_length = 5
+
+[node name="AddWall" type="Button" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralArea"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_type_variation = &"LongButton"
+theme_override_styles/normal = ExtResource("6_74fxf")
+theme_override_styles/hover = ExtResource("7_ch878")
+theme_override_styles/pressed = ExtResource("8_6irkf")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_nm6fl")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6k147")
+icon = ExtResource("5_26vts")
+
+[node name="MuralMockup" type="VBoxContainer" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="ToggleNeedDesign" type="CheckButton" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralMockup"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Client needs mockup / design?"
+
+[node name="MockupInputs" type="VBoxContainer" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralMockup"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Grid" type="GridContainer" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralMockup/MockupInputs"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 10
+columns = 3
+
+[node name="Name" type="Label" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralMockup/MockupInputs/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name"
+
+[node name="Number" type="Label" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralMockup/MockupInputs/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Quantity"
+horizontal_alignment = 1
+
+[node name="Price" type="Label" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralMockup/MockupInputs/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Price | ₱"
+horizontal_alignment = 1
+
+[node name="InputName" type="LineEdit" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralMockup/MockupInputs/Grid"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "e.g: Sketch"
+
+[node name="InputNumber" type="LineEdit" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralMockup/MockupInputs/Grid"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "e.g:  1"
+max_length = 3
+
+[node name="InputPrice" type="LineEdit" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralMockup/MockupInputs/Grid"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "e.g: 500"
+max_length = 5
+
+[node name="AddDesign" type="Button" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralMockup/MockupInputs"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_type_variation = &"LongButton"
+icon = ExtResource("5_26vts")
+
+[node name="MuralMaterials" type="VBoxContainer" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[node name="InputMaterials" type="GridContainer" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralMaterials"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 10
+columns = 3
+
+[node name="MaterialName" type="Label" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralMaterials/InputMaterials"]
+layout_mode = 2
+text = "Name"
+
+[node name="MaterialQuantity" type="Label" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralMaterials/InputMaterials"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Quantity"
+
+[node name="MaterialPrice" type="Label" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralMaterials/InputMaterials"]
+layout_mode = 2
+text = "Price | ₱"
+
+[node name="InputMaterialName" type="LineEdit" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralMaterials/InputMaterials"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "e.g: Green 1L"
+
+[node name="InputMaterialQuantity" type="LineEdit" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralMaterials/InputMaterials"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "e.g: 2"
+
+[node name="InputMaterialPrice" type="LineEdit" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralMaterials/InputMaterials"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "e.g: 100"
+
+[node name="AddMaterial" type="Button" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralMaterials"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_type_variation = &"LongButton"
+icon = ExtResource("5_26vts")
+
+[node name="Control" type="Control" parent="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralMaterials"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[connection signal="pressed" from="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/Header/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/Header/Forward" to="." method="_on_forward_pressed"]
+[connection signal="pressed" from="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/TypeChoose/MarginContainer/HBoxContainer/NextType" to="." method="_on_next_type_pressed"]
+[connection signal="value_changed" from="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralArea/Grid/InputDetail" to="." method="_on_input_detail_value_changed"]
+[connection signal="pressed" from="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralArea/AddWall" to="." method="_on_add_wall_pressed"]
+[connection signal="toggled" from="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralMockup/ToggleNeedDesign" to="." method="_on_check_button_toggled"]
+[connection signal="pressed" from="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralMockup/MockupInputs/AddDesign" to="." method="_on_add_design_pressed"]
+[connection signal="pressed" from="Screen/Background/AllComponents/QuestionnaireBG/MarginContainer/Questionnaire/MuralMaterials/AddMaterial" to="." method="_on_add_material_pressed"]

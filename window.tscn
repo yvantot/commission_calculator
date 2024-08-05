@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ceu07wsp3w5mb"]
+
+[sub_resource type="Theme" id="Theme_372af"]
+Label/font_sizes/font_size = 14
+
+[node name="Window" type="Window"]
+title = "Debug"
+size = Vector2i(300, 500)
+theme = SubResource("Theme_372af")

@@ -9,11 +9,12 @@ const FORWARD = preload("res://assets/reply-1.png")
 @onready var header: HBoxContainer = %Header
 @onready var header_title: Label = %HeaderTitle
 # Detail
-@onready var detail_list: VBoxContainer = %DetailList
+@onready var detail_list_parent: PanelContainer = %DetailListParent
 @onready var mockup_details: VBoxContainer = %MockupDetails
 @onready var material_details: VBoxContainer = %MaterialDetails
 @onready var sizing_details: VBoxContainer = %SizingDetails
 @onready var total: Label = %Total
+@onready var mural_detail_list: VBoxContainer = %MuralDetailList
 # Type
 @onready var type_choose: PanelContainer = %TypeChoose
 @onready var service: Label = %Type
@@ -40,43 +41,38 @@ const FORWARD = preload("res://assets/reply-1.png")
 @onready var input_material_quantity: LineEdit = %InputMaterialQuantity
 @onready var input_material_price: LineEdit = %InputMaterialPrice
 
-# Var States
-var mural_pages := []
-const avail_comms := ["Mural", "Painting", "Crochet", "Sculpting"]
-const mural_titles := ["Price For?", "Mural Size & Rate", "Design Needs?", "Needed Materials"]
+
+# Global Var States
 var current_comms := 0
 var current_page := 0
+const avail_comms := ["Mural", "Painting", "Crochet", "Sculpting"]
+# Mural Var States
+var mural_pages := []
+const mural_titles := ["Price For?", "Mural Size & Rate", "Design Needs?", "Needed Materials"]
+# Painting Var States
+var painting_pages := []
+const painting_titles := ["Price For?", "Mural Size & Rate", "Design Needs?", "Needed Materials"]
 
 func _ready() -> void :
+	
+	
+	for details: Variant in detail_list_parent.get_children():
+		details.visible = false
+	
 	mural_pages = [type_choose, mural_area, mural_mockup, mural_materials]
 	for i in range(1, mural_pages.size()):
-		mural_pages[i].visible = false		
+		mural_pages[i].visible = false
+		
 	mural_pages[current_page].visible = true
 
-# Mural Functions
-func _on_back_pressed() -> void :
-	if(service.text == "Mural"):
-		mural_pages[current_page].visible = false		
-		if(current_page > 0): current_page -= 1
-		mural_pages[current_page].visible = true
-		header_title.text = mural_titles[current_page]
-		
-		if current_page == mural_pages.size() - 2:			
-			forward.visible = true
-								
-	elif(service.text == "Painting"):
-		pass
-	elif(service.text == "Crochet"):
-		pass
-	elif(service.text == "Sculpting"):
-		pass
-
+# Navigation
 func _on_forward_pressed() -> void :
-	if(service.text == "Mural"):
+	if(service.text == "Mural"):		
 		mural_pages[current_page].visible = false
 		if current_page < mural_pages.size() - 1:
 			current_page += 1	
-		
+				
+		mural_detail_list.visible = true
 		mural_pages[current_page].visible = true
 		header_title.text = mural_titles[current_page]
 		
@@ -89,7 +85,26 @@ func _on_forward_pressed() -> void :
 		pass
 	elif(service.text == "Sculpting"):
 		pass	
-	
+		
+func _on_back_pressed() -> void :
+	if(service.text == "Mural"):		
+		mural_pages[current_page].visible = false		
+		if(current_page > 0): current_page -= 1
+		mural_pages[current_page].visible = true
+		header_title.text = mural_titles[current_page]
+		
+		if current_page == 0: mural_detail_list.visible = false		
+		if current_page == mural_pages.size() - 2:			
+			forward.visible = true
+								
+	elif(service.text == "Painting"):
+		pass
+	elif(service.text == "Crochet"):
+		pass
+	elif(service.text == "Sculpting"):
+		pass
+
+# Type choose
 func _on_next_type_pressed() -> void :
 	current_comms += 1
 	current_comms %= avail_comms.size()
@@ -205,4 +220,3 @@ func setUpNodes(new_hbox: HBoxContainer, new_delete: Button, new_wall: Label, at
 	new_delete.set_theme_type_variation("DeleteButton")
 	new_wall.set_h_size_flags(Control.SIZE_EXPAND_FILL)
 	new_delete.pressed.connect(self._on_delete_wall_pressed.bind(new_hbox))
-	

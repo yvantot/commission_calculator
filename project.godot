@@ -17,13 +17,13 @@ config/features=PackedStringArray("4.2", "GL Compatibility")
 [debug]
 
 settings/stdout/print_fps=true
-gdscript/warnings/untyped_declaration=2
 gdscript/warnings/unsafe_cast=1
 
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=1080
+window/subwindows/embed_subwindows=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation=1

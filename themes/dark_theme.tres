@@ -1,51 +1,39 @@
 [gd_resource type="Theme" load_steps=27 format=3 uid="uid://bylakh23f6f8b"]
 
 [ext_resource type="FontFile" uid="uid://dfrabrg61xrgr" path="res://assets/Montserrat-VariableFont_wght.ttf" id="1_nqlng"]
-[ext_resource type="StyleBox" uid="uid://d0jw1dfmx5wro" path="res://themes/Button_hover.tres" id="2_oeumi"]
-[ext_resource type="StyleBox" uid="uid://cn8ja6d1dixal" path="res://themes/Button.tres" id="3_lkjk3"]
-[ext_resource type="StyleBox" uid="uid://c5wh358v7wa2a" path="res://themes/Button_pressed.tres" id="4_w7h6r"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xjjpx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y1k2x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3gpbj"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-bg_color = Color(0.879782, 0.342047, 0.329195, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-shadow_size = 2
+bg_color = Color(0.773227, 0.309765, 0.4119, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.254902)
+shadow_size = 1
 shadow_offset = Vector2(0, 3)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4gen"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-bg_color = Color(0.763941, 0.255166, 0.25113, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-shadow_size = 2
+bg_color = Color(0.64, 0.2304, 0.325973, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.254902)
+shadow_size = 1
 shadow_offset = Vector2(0, 3)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ktulg"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-bg_color = Color(0.686613, 0.217406, 0.215699, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-shadow_size = 2
+bg_color = Color(0.525678, 0.178983, 0.260275, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.254902)
+shadow_size = 1
 shadow_offset = Vector2(0, 3)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jqvlm"]
@@ -69,6 +57,36 @@ shadow_offset = Vector2(0, 3)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wmkja"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ggd6o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t5cwv"]
+bg_color = Color(0.3519, 0.69, 0.48714, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.352941)
+shadow_size = 1
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_88din"]
+bg_color = Color(0.3162, 0.62, 0.43772, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.352941)
+shadow_size = 1
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2s3b2"]
+bg_color = Color(0.2754, 0.54, 0.38124, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.352941)
+shadow_size = 1
+shadow_offset = Vector2(0, 3)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7dgx"]
 content_margin_left = 10.0
@@ -187,9 +205,9 @@ LongButton/font_sizes/font_size = 24
 LongButton/fonts/font = ExtResource("1_nqlng")
 LongButton/styles/disabled = SubResource("StyleBoxEmpty_wmkja")
 LongButton/styles/focus = SubResource("StyleBoxEmpty_ggd6o")
-LongButton/styles/hover = ExtResource("2_oeumi")
-LongButton/styles/normal = ExtResource("3_lkjk3")
-LongButton/styles/pressed = ExtResource("4_w7h6r")
+LongButton/styles/hover = SubResource("StyleBoxFlat_t5cwv")
+LongButton/styles/normal = SubResource("StyleBoxFlat_88din")
+LongButton/styles/pressed = SubResource("StyleBoxFlat_2s3b2")
 MaterialList/base_type = &"PanelContainer"
 MaterialList/styles/panel = SubResource("StyleBoxFlat_t7dgx")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_kard5")

@@ -1,14 +1,25 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1vn75t4dlc2c"]
+[gd_scene load_steps=9 format=3 uid="uid://d1vn75t4dlc2c"]
 
 [ext_resource type="Theme" uid="uid://bylakh23f6f8b" path="res://themes/dark_theme.tres" id="1_ulxqq"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="2_l55bw"]
-[ext_resource type="Texture2D" uid="uid://b0shko2hvsnuf" path="res://assets/reply.png" id="2_vla6e"]
+[ext_resource type="Texture2D" uid="uid://b0shko2hvsnuf" path="res://assets/backward.png" id="2_vla6e"]
 [ext_resource type="Script" path="res://scenes/ResizeDrag.gd" id="3_petw1"]
 [ext_resource type="Texture2D" uid="uid://c4ki4x2r15ia2" path="res://assets/arrow_circle_right.png" id="4_65x2t"]
 [ext_resource type="Texture2D" uid="uid://bg5if515frslc" path="res://assets/add_circle.png" id="5_26vts"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lhbj5"]
 load_path = "res://.godot/imported/reply-1.png-e5c04a4729db3fc4a2620cafc770f880.ctex"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h31bc"]
+bg_color = Color(0.388703, 0.566089, 0.447944, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
 
 [node name="CommissionCalculator" type="Control"]
 layout_mode = 3
@@ -50,7 +61,7 @@ alignment = 2
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 50
+theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
@@ -64,11 +75,26 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 20
 
-[node name="DetailTitle" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails"]
+layout_mode = 2
+
+[node name="DetailTitle" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.274388, 0.534651, 0.390787, 1)
+theme_override_font_sizes/font_size = 30
 text = "Commission Details"
 horizontal_alignment = 1
+
+[node name="CurrentCommissionTitle" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(580, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.211765, 0.431373, 0.309804, 1)
+theme_override_colors/font_outline_color = Color(0.458405, 0.458405, 0.458405, 1)
+theme_override_font_sizes/font_size = 16
+text = "Quote here"
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="DetailListParent" type="PanelContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails"]
 unique_name_in_owner = true
@@ -79,7 +105,6 @@ theme_type_variation = &"detail_list"
 
 [node name="MuralDetailList" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 50
@@ -89,7 +114,7 @@ layout_mode = 2
 
 [node name="Title" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/MuralDetailList/VBoxContainer"]
 layout_mode = 2
-text = "Walls :"
+text = "Walls : # of nodes"
 
 [node name="SizingDetails" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/MuralDetailList/VBoxContainer"]
 unique_name_in_owner = true
@@ -97,6 +122,7 @@ layout_mode = 2
 theme_override_constants/separation = 5
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/MuralDetailList"]
+visible = false
 layout_mode = 2
 
 [node name="Title" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/MuralDetailList/VBoxContainer2"]
@@ -113,7 +139,7 @@ layout_mode = 2
 
 [node name="Title" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/MuralDetailList/VBoxContainer3"]
 layout_mode = 2
-text = "Materials :"
+text = "Expenses : Pay @ here"
 
 [node name="MaterialDetails" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/MuralDetailList/VBoxContainer3"]
 unique_name_in_owner = true
@@ -125,16 +151,143 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Total :"
 
-[node name="Paint" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/MuralDetailList"]
 layout_mode = 2
 
-[node name="Sculpt" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent"]
+[node name="MuralContactTitle" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/MuralDetailList/HBoxContainer"]
+layout_mode = 2
+text = "Contact :"
+
+[node name="CrochetContacts" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/MuralDetailList/HBoxContainer"]
 layout_mode = 2
 
-[node name="Crochet" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent"]
+[node name="PaintDetailList" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/PaintDetailList"]
 layout_mode = 2
 
-[node name="QuestionnaireBG" type="PanelContainer" parent="Screen/Background"]
+[node name="Title" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/PaintDetailList/VBoxContainer"]
+layout_mode = 2
+text = "Painting :"
+
+[node name="PAreaDetailsVB" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/PaintDetailList/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/PaintDetailList"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/PaintDetailList/VBoxContainer2"]
+layout_mode = 2
+text = "Expenses :"
+
+[node name="PExpDetailsVB" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/PaintDetailList/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="PaintingTotal" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/PaintDetailList"]
+layout_mode = 2
+text = "Total :"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/PaintDetailList"]
+layout_mode = 2
+
+[node name="PaintingContactTitle" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/PaintDetailList/HBoxContainer"]
+layout_mode = 2
+text = "Contact :"
+
+[node name="PaintingContacts" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/PaintDetailList/HBoxContainer"]
+layout_mode = 2
+
+[node name="SculptDetailList" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/SculptDetailList"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/SculptDetailList/VBoxContainer"]
+layout_mode = 2
+text = "Sculpting :"
+
+[node name="SAreaDetailsVB" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/SculptDetailList/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/SculptDetailList"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/SculptDetailList/VBoxContainer2"]
+layout_mode = 2
+text = "Expenses :"
+
+[node name="SExpDetailsVB" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/SculptDetailList/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="SculptingTotal" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/SculptDetailList"]
+layout_mode = 2
+text = "Total :"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/SculptDetailList"]
+layout_mode = 2
+
+[node name="SculptingContactTitle" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/SculptDetailList/HBoxContainer"]
+layout_mode = 2
+text = "Contact :"
+
+[node name="SculptingContacts" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/SculptDetailList/HBoxContainer"]
+layout_mode = 2
+
+[node name="CrochetDetailList" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/CrochetDetailList"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/CrochetDetailList/VBoxContainer"]
+layout_mode = 2
+text = "Crochets :"
+
+[node name="CAreaDetailsVB" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/CrochetDetailList/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/CrochetDetailList"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/CrochetDetailList/VBoxContainer2"]
+layout_mode = 2
+text = "Expenses :"
+
+[node name="CExpDetailsVB" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/CrochetDetailList/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="CrochetTotal" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/CrochetDetailList"]
+layout_mode = 2
+text = "Total :"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/CrochetDetailList"]
+layout_mode = 2
+
+[node name="CrochetContactTitle" type="Label" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/CrochetDetailList/HBoxContainer"]
+layout_mode = 2
+text = "Contact :"
+
+[node name="CrochetContacts" type="VBoxContainer" parent="Screen/Background/AllComponents/MarginContainer/ScrollContainer/CommissionDetails/DetailListParent/CrochetDetailList/HBoxContainer"]
+layout_mode = 2
+
+[node name="QuestionnaireBG" type="PanelContainer" parent="Screen"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -145,24 +298,26 @@ grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("3_petw1")
 
-[node name="MarginContainer" type="MarginContainer" parent="Screen/Background/QuestionnaireBG"]
+[node name="MarginContainer" type="MarginContainer" parent="Screen/QuestionnaireBG"]
 layout_mode = 2
-theme_override_constants/margin_left = 80
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 80
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="Questionnaire" type="VBoxContainer" parent="Screen/Background/QuestionnaireBG/MarginContainer"]
+[node name="QuestionnaireMain" type="VBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 40
 
-[node name="Header" type="HBoxContainer" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire"]
+[node name="Header" type="HBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 alignment = 1
 
-[node name="Back" type="Button" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Header"]
+[node name="Back" type="Button" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Header"]
+unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -170,7 +325,7 @@ size_flags_vertical = 4
 theme_type_variation = &"navigate_btn"
 icon = ExtResource("2_vla6e")
 
-[node name="HeaderTitle" type="Label" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Header"]
+[node name="HeaderTitle" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Header"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -180,7 +335,7 @@ theme_override_font_sizes/font_size = 30
 text = "Price For?"
 horizontal_alignment = 1
 
-[node name="Forward" type="Button" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Header"]
+[node name="Forward" type="Button" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Header"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
@@ -189,23 +344,23 @@ size_flags_vertical = 4
 theme_type_variation = &"navigate_btn"
 icon = SubResource("CompressedTexture2D_lhbj5")
 
-[node name="TypeChoose" type="PanelContainer" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire"]
+[node name="TypeChoose" type="PanelContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 theme_type_variation = &"QuestionBox"
 
-[node name="MarginContainer" type="MarginContainer" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/TypeChoose"]
+[node name="MarginContainer" type="MarginContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/TypeChoose"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/TypeChoose/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/TypeChoose/MarginContainer"]
 layout_mode = 2
 
-[node name="Type" type="Label" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/TypeChoose/MarginContainer/HBoxContainer"]
+[node name="Type" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/TypeChoose/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 2
@@ -213,14 +368,14 @@ theme_type_variation = &"TextOnWhite"
 theme_override_font_sizes/font_size = 24
 text = "Mural"
 
-[node name="NextType" type="Button" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/TypeChoose/MarginContainer/HBoxContainer"]
+[node name="NextType" type="Button" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/TypeChoose/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 4
 theme_type_variation = &"SimpleButton"
 
-[node name="TextureRect" type="TextureRect" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/TypeChoose/MarginContainer/HBoxContainer/NextType"]
+[node name="TextureRect" type="TextureRect" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/TypeChoose/MarginContainer/HBoxContainer/NextType"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -237,290 +392,824 @@ scale = Vector2(0.8, 0.8)
 pivot_offset = Vector2(36, 36)
 texture = ExtResource("4_65x2t")
 
-[node name="Mural Container" type="VBoxContainer" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire"]
+[node name="Questionnaires" type="PanelContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h31bc")
+
+[node name="MuralMain" type="VBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MuralArea" type="VBoxContainer" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container"]
+[node name="MAreaMain" type="VBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 30
 
-[node name="Grid" type="GridContainer" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralArea"]
+[node name="Grid" type="GridContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MAreaMain"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/h_separation = 30
 theme_override_constants/v_separation = 10
 columns = 2
 
-[node name="Height" type="Label" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralArea/Grid"]
+[node name="Height" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MAreaMain/Grid"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Height | ft"
 horizontal_alignment = 1
 
-[node name="Width" type="Label" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralArea/Grid"]
+[node name="Width" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MAreaMain/Grid"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Width | ft"
 horizontal_alignment = 1
 
-[node name="InputHeight" type="LineEdit" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralArea/Grid"]
+[node name="InputHeight" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MAreaMain/Grid"]
 unique_name_in_owner = true
 layout_mode = 2
 placeholder_text = "e.g:  7"
 max_length = 3
 
-[node name="InputWidth" type="LineEdit" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralArea/Grid"]
+[node name="InputWidth" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MAreaMain/Grid"]
 unique_name_in_owner = true
 layout_mode = 2
 placeholder_text = "e.g: 8"
 max_length = 3
 
-[node name="LabelMuralDetail" type="Label" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralArea/Grid"]
-unique_name_in_owner = true
+[node name="Label" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MAreaMain/Grid"]
 layout_mode = 2
-size_flags_horizontal = 3
-text = "Simple"
-horizontal_alignment = 1
+text = "Deadline: DD/MM/YY"
 
-[node name="Rate" type="Label" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralArea/Grid"]
+[node name="Rate" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MAreaMain/Grid"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Rate | ₱"
 horizontal_alignment = 1
 
-[node name="InputDetail" type="HSlider" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralArea/Grid"]
+[node name="MAreaDeadlineLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MAreaMain/Grid"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 1
-min_value = 1.0
-max_value = 3.0
-value = 1.0
+placeholder_text = "e.g: 27/6/2000"
 
-[node name="InputRate" type="LineEdit" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralArea/Grid"]
+[node name="InputRate" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MAreaMain/Grid"]
 unique_name_in_owner = true
 layout_mode = 2
 placeholder_text = "e.g: 150"
 max_length = 5
 
-[node name="AddWall" type="Button" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralArea"]
+[node name="Label2" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MAreaMain/Grid"]
+layout_mode = 2
+text = "Wall Address"
+
+[node name="LabelMuralDetail" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MAreaMain/Grid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Simple"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MAreaMain/Grid/LabelMuralDetail"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MAreaAddressLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MAreaMain/Grid"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "e.g: Pansol, Blk 1 Lot 3"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MAreaMain/Grid"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="InputDetail" type="HSlider" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MAreaMain/Grid/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 1.0
+max_value = 3.0
+value = 1.0
+
+[node name="AddWall" type="Button" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MAreaMain/Grid/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_type_variation = &"LongButton"
 icon = ExtResource("5_26vts")
 
-[node name="MuralMockup" type="VBoxContainer" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-theme_override_constants/separation = 30
-
-[node name="ToggleNeedDesign" type="CheckButton" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralMockup"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Client needs mockup / design?"
-
-[node name="MockupInputs" type="VBoxContainer" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralMockup"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-theme_override_constants/separation = 30
-
-[node name="Grid" type="GridContainer" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralMockup/MockupInputs"]
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_constants/h_separation = 20
-theme_override_constants/v_separation = 10
-columns = 3
-
-[node name="Name" type="Label" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralMockup/MockupInputs/Grid"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Name"
-
-[node name="Number" type="Label" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralMockup/MockupInputs/Grid"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Quantity"
-horizontal_alignment = 1
-
-[node name="Price" type="Label" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralMockup/MockupInputs/Grid"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Price | ₱"
-horizontal_alignment = 1
-
-[node name="InputName" type="LineEdit" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralMockup/MockupInputs/Grid"]
-unique_name_in_owner = true
-layout_mode = 2
-placeholder_text = "e.g: Sketch"
-
-[node name="InputNumber" type="LineEdit" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralMockup/MockupInputs/Grid"]
-unique_name_in_owner = true
-layout_mode = 2
-placeholder_text = "e.g:  1"
-max_length = 3
-
-[node name="InputPrice" type="LineEdit" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralMockup/MockupInputs/Grid"]
-unique_name_in_owner = true
-layout_mode = 2
-placeholder_text = "e.g: 500"
-max_length = 5
-
-[node name="AddDesign" type="Button" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralMockup/MockupInputs"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_type_variation = &"LongButton"
-icon = ExtResource("5_26vts")
-
-[node name="MuralMaterials" type="VBoxContainer" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container"]
+[node name="MExpMain" type="VBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 30
+theme_override_constants/separation = 20
 
-[node name="InputMaterials" type="GridContainer" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralMaterials"]
+[node name="MExpInfoGC" type="GridContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MExpMain"]
 layout_mode = 2
-theme_override_constants/h_separation = 20
+theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 3
 
-[node name="MaterialName" type="Label" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralMaterials/InputMaterials"]
+[node name="Label" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MExpMain/MExpInfoGC"]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Name"
 
-[node name="MaterialQuantity" type="Label" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralMaterials/InputMaterials"]
+[node name="Label2" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MExpMain/MExpInfoGC"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Quantity"
 
-[node name="MaterialPrice" type="Label" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralMaterials/InputMaterials"]
+[node name="Label3" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MExpMain/MExpInfoGC"]
 layout_mode = 2
-text = "Price | ₱"
+size_flags_horizontal = 3
+text = "Price"
 
-[node name="InputMaterialName" type="LineEdit" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralMaterials/InputMaterials"]
+[node name="MExpNameLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MExpMain/MExpInfoGC"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-placeholder_text = "e.g: Green 1L"
+size_flags_vertical = 4
+placeholder_text = "e.g: Acrylic"
 
-[node name="InputMaterialQuantity" type="LineEdit" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralMaterials/InputMaterials"]
+[node name="MExpQuantityLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MExpMain/MExpInfoGC"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-placeholder_text = "e.g: 2"
+size_flags_vertical = 4
+placeholder_text = "e.g: 10"
 
-[node name="InputMaterialPrice" type="LineEdit" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralMaterials/InputMaterials"]
+[node name="MExpPriceLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MExpMain/MExpInfoGC"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 placeholder_text = "e.g: 100"
 
-[node name="AddMaterial" type="Button" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralMaterials"]
+[node name="MExpPaymentHB" type="HBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MExpMain"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MExpPaymentVB" type="VBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MExpMain/MExpPaymentHB"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MExpMain/MExpPaymentHB/MExpPaymentVB"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Payment Info"
+
+[node name="MExpPaymentLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MExpMain/MExpPaymentHB/MExpPaymentVB"]
 unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "GCash # or Paypal or Cash"
+
+[node name="VSeparator" type="VSeparator" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MExpMain/MExpPaymentHB"]
+layout_mode = 2
+
+[node name="MExpAddBT" type="Button" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MExpMain/MExpPaymentHB"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_type_variation = &"LongButton"
 icon = ExtResource("5_26vts")
 
-[node name="Control" type="Control" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralMaterials"]
-custom_minimum_size = Vector2(0, 50)
+[node name="MExpContactVB" type="VBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MExpMain"]
 layout_mode = 2
 
-[node name="Painting Container" type="VBoxContainer" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire"]
+[node name="Label" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MExpMain/MExpContactVB"]
 layout_mode = 2
-size_flags_vertical = 3
+text = "Contacts"
 
-[node name="PaintingArea" type="VBoxContainer" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Painting Container"]
+[node name="MExpContactInputHB" type="HBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MExpMain/MExpContactVB"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MExpPhoneLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MExpMain/MExpContactVB/MExpContactInputHB"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Phone #"
+
+[node name="MExpEmailLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MExpMain/MExpContactVB/MExpContactInputHB"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Email @"
+
+[node name="MExpSocialLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MExpMain/MExpContactVB/MExpContactInputHB"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Social media"
+
+[node name="PaintingMain" type="VBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="GridContainer" type="GridContainer" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Painting Container/PaintingArea"]
+[node name="PAreaMain" type="VBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[node name="PAreaGC" type="GridContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PAreaMain"]
+layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 10
 columns = 2
 
-[node name="Label" type="Label" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Painting Container/PaintingArea/GridContainer"]
+[node name="Label" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PAreaMain/PAreaGC"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Width | ft"
 
-[node name="Label2" type="Label" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Painting Container/PaintingArea/GridContainer"]
+[node name="Label2" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PAreaMain/PAreaGC"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Height | ft"
 
-[node name="LineEdit" type="LineEdit" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Painting Container/PaintingArea/GridContainer"]
+[node name="PAreaWidthLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PAreaMain/PAreaGC"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+placeholder_text = "e.g: 8"
 
-[node name="LineEdit2" type="LineEdit" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Painting Container/PaintingArea/GridContainer"]
+[node name="PAreaHeightLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PAreaMain/PAreaGC"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+placeholder_text = "e.g: 27"
 
-[node name="Label3" type="Label" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Painting Container/PaintingArea/GridContainer"]
+[node name="Label6" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PAreaMain/PAreaGC"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Deadline | MM/DD/YY"
+
+[node name="Label4" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PAreaMain/PAreaGC"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Rate | ₱"
+
+[node name="PAreaDeadlineLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PAreaMain/PAreaGC"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "e.g: 10/08/2003"
+
+[node name="PAreaRateLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PAreaMain/PAreaGC"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+placeholder_text = "e.g: 150"
+
+[node name="Label3" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PAreaMain/PAreaGC"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Medium"
+
+[node name="PAreaDetailLB" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PAreaMain/PAreaGC"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Simple"
 
-[node name="Label4" type="Label" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Painting Container/PaintingArea/GridContainer"]
+[node name="PAreaMediumIL" type="ItemList" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PAreaMain/PAreaGC"]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
-text = "Rate"
+size_flags_vertical = 3
+item_count = 4
+item_0/text = "Acrylic"
+item_1/text = "Oil"
+item_2/text = "Watercolor"
+item_3/text = "Mixed Media"
 
-[node name="HSlider" type="HSlider" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Painting Container/PaintingArea/GridContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="LineEdit3" type="LineEdit" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Painting Container/PaintingArea/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Painting Container/PaintingArea"]
+[node name="PAreaHB" type="HBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PAreaMain/PAreaGC"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Painting Container/PaintingArea/HBoxContainer"]
+[node name="PAreaDetailHS" type="HSlider" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PAreaMain/PAreaGC/PAreaHB"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_vertical = 1
+min_value = 1.0
+max_value = 3.0
+value = 1.0
 
-[node name="Label" type="Label" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Painting Container/PaintingArea/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-text = "Rate Explanation"
-
-[node name="TextEdit" type="TextEdit" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Painting Container/PaintingArea/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Button" type="Button" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Painting Container/PaintingArea/HBoxContainer"]
+[node name="PAreaAddBT" type="Button" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PAreaMain/PAreaGC/PAreaHB"]
 layout_mode = 2
 size_flags_horizontal = 8
+size_flags_vertical = 4
 theme_type_variation = &"LongButton"
 icon = ExtResource("5_26vts")
 
-[node name="PaintingArea2" type="VBoxContainer" parent="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Painting Container"]
+[node name="PExpMain" type="VBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/separation = 20
 
-[connection signal="pressed" from="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Header/Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Header/Forward" to="." method="_on_forward_pressed"]
-[connection signal="pressed" from="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/TypeChoose/MarginContainer/HBoxContainer/NextType" to="." method="_on_next_type_pressed"]
-[connection signal="value_changed" from="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralArea/Grid/InputDetail" to="." method="_on_input_detail_value_changed"]
-[connection signal="pressed" from="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralArea/AddWall" to="." method="_on_add_wall_pressed"]
-[connection signal="toggled" from="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralMockup/ToggleNeedDesign" to="." method="_on_check_button_toggled"]
-[connection signal="pressed" from="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralMockup/MockupInputs/AddDesign" to="." method="_on_add_design_pressed"]
-[connection signal="pressed" from="Screen/Background/QuestionnaireBG/MarginContainer/Questionnaire/Mural Container/MuralMaterials/AddMaterial" to="." method="_on_add_material_pressed"]
+[node name="PExpGC" type="GridContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PExpMain"]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 3
+
+[node name="Label" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PExpMain/PExpGC"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name"
+
+[node name="Label2" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PExpMain/PExpGC"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Quantity"
+
+[node name="Label3" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PExpMain/PExpGC"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Price | ₱"
+
+[node name="PExpNameLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PExpMain/PExpGC"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+placeholder_text = "e.g: Acrylic"
+
+[node name="PExpQuantityLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PExpMain/PExpGC"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+placeholder_text = "e.g: 10"
+
+[node name="PExpPriceLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PExpMain/PExpGC"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+placeholder_text = "e.g: 100"
+
+[node name="PExpPaymentHB" type="HBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PExpMain"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="PExpPaymentVB" type="VBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PExpMain/PExpPaymentHB"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PExpMain/PExpPaymentHB/PExpPaymentVB"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Payment Info"
+
+[node name="PExpPaymentLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PExpMain/PExpPaymentHB/PExpPaymentVB"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "GCash # or Paypal or Cash"
+
+[node name="PExpAddBT" type="Button" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PExpMain/PExpPaymentHB"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_type_variation = &"LongButton"
+icon = ExtResource("5_26vts")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PExpMain"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PExpMain/VBoxContainer"]
+layout_mode = 2
+text = "Contacts"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PExpMain/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="PExpPhoneLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PExpMain/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Phone #"
+
+[node name="PExpEmailLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PExpMain/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Email @"
+
+[node name="PExpSocialLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/PaintingMain/PExpMain/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Social media"
+
+[node name="SculptingMain" type="VBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="SAreaMain" type="VBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[node name="GridContainer" type="GridContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SAreaMain"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="Label" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SAreaMain/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Width | ft"
+
+[node name="Label2" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SAreaMain/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Height | ft"
+
+[node name="SAreaWidthLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SAreaMain/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+placeholder_text = "e.g: 10"
+
+[node name="SAreaHeightLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SAreaMain/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+placeholder_text = "e.g: 20"
+
+[node name="Label6" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SAreaMain/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Deadline | MM/DD/YY"
+
+[node name="Label4" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SAreaMain/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Rate | ₱"
+
+[node name="SAreaDeadlineLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SAreaMain/GridContainer"]
+layout_mode = 2
+placeholder_text = "e.g: 10/13/2016"
+
+[node name="SAreaRateLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SAreaMain/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+placeholder_text = "e.g: 200"
+
+[node name="SAreaDetailLB" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SAreaMain/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Simple"
+
+[node name="_" type="Control" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SAreaMain/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_type_variation = &"LongButton"
+
+[node name="SAreaDetailHS" type="HSlider" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SAreaMain/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 1.0
+max_value = 3.0
+value = 1.0
+
+[node name="SAreaAddBT" type="Button" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SAreaMain/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_type_variation = &"LongButton"
+icon = ExtResource("5_26vts")
+
+[node name="SExpMain" type="VBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="GridContainer" type="GridContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SExpMain"]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 3
+
+[node name="Label" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SExpMain/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name"
+
+[node name="Label2" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SExpMain/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Quantity"
+
+[node name="Label3" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SExpMain/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Price | ₱"
+
+[node name="SExpNameLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SExpMain/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+placeholder_text = "e.g: Acrylic"
+
+[node name="SExpQuantityLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SExpMain/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+placeholder_text = "e.g: 10"
+
+[node name="SExpPriceLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SExpMain/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+placeholder_text = "e.g: 100"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SExpMain"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SExpMain/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SExpMain/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Payment Info"
+
+[node name="SExpPaymentLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SExpMain/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "GCash # or Paypal or Cash"
+
+[node name="SExpAddBT" type="Button" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SExpMain/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_type_variation = &"LongButton"
+icon = ExtResource("5_26vts")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SExpMain"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SExpMain/VBoxContainer"]
+layout_mode = 2
+text = "Contacts"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SExpMain/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SExpPhoneLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SExpMain/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Phone #"
+
+[node name="SExpEmailLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SExpMain/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Email @"
+
+[node name="SExpSocialLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/SculptingMain/SExpMain/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Social media"
+
+[node name="CrochetMain" type="VBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="CAreaMain" type="VBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[node name="GridContainer" type="GridContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CAreaMain"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="Label" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CAreaMain/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Width | ft"
+
+[node name="Label2" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CAreaMain/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Height | ft"
+
+[node name="CAreaWidthLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CAreaMain/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+placeholder_text = "e.g: 10"
+
+[node name="CAreaHeightLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CAreaMain/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+placeholder_text = "e.g: 10"
+
+[node name="Label6" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CAreaMain/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Deadline | MM/DD/YY"
+
+[node name="Label4" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CAreaMain/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Rate | ₱"
+
+[node name="CAreaDeadlineLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CAreaMain/GridContainer"]
+layout_mode = 2
+placeholder_text = "e.g: 12/25/2024"
+
+[node name="CAreaRateLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CAreaMain/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+placeholder_text = "e.g: 300"
+
+[node name="Label7" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CAreaMain/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Yarn Ply"
+
+[node name="CAreaDetailLB" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CAreaMain/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Simple"
+
+[node name="CAreaPlyLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CAreaMain/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+placeholder_text = "e.g: 4"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CAreaMain/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="CAreaDetailSL" type="HSlider" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CAreaMain/GridContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 1.0
+max_value = 3.0
+value = 1.0
+
+[node name="CAreaAddBT" type="Button" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CAreaMain/GridContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_type_variation = &"LongButton"
+icon = ExtResource("5_26vts")
+
+[node name="CExpMain" type="VBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="GridContainer" type="GridContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CExpMain"]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 3
+
+[node name="Label" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CExpMain/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name"
+
+[node name="Label2" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CExpMain/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Quantity"
+
+[node name="Label3" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CExpMain/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Price | ₱"
+
+[node name="CExpNameLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CExpMain/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+placeholder_text = "e.g: Acrylic"
+
+[node name="CExpQuantityLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CExpMain/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+placeholder_text = "e.g: 10"
+
+[node name="CExpPriceLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CExpMain/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+placeholder_text = "e.g: 100"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CExpMain"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CExpMain/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CExpMain/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Payment Info"
+
+[node name="CExpPaymentLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CExpMain/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "GCash # or Paypal or Cash"
+
+[node name="CExpAddBT" type="Button" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CExpMain/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_type_variation = &"LongButton"
+icon = ExtResource("5_26vts")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CExpMain"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CExpMain/VBoxContainer"]
+layout_mode = 2
+text = "Contacts"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CExpMain/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CExpPhoneLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CExpMain/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Phone #"
+
+[node name="CExpEmailLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CExpMain/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Email @"
+
+[node name="CExpSocialLE" type="LineEdit" parent="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/CrochetMain/CExpMain/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Social media"
+
+[connection signal="pressed" from="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Header/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Header/Forward" to="." method="_on_forward_pressed"]
+[connection signal="pressed" from="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/TypeChoose/MarginContainer/HBoxContainer/NextType" to="." method="_on_next_type_pressed"]
+[connection signal="value_changed" from="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MAreaMain/Grid/HBoxContainer/InputDetail" to="." method="_on_input_detail_value_changed"]
+[connection signal="pressed" from="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MAreaMain/Grid/HBoxContainer/AddWall" to="." method="_on_add_wall_pressed"]
+[connection signal="pressed" from="Screen/QuestionnaireBG/MarginContainer/QuestionnaireMain/Questionnaires/MuralMain/MExpMain/MExpPaymentHB/MExpAddBT" to="." method="_on_m_exp_add_bt_pressed"]

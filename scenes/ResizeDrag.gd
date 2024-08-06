@@ -35,7 +35,6 @@ func _ready():
 	vbox.add_child(new_pos)
 	mywin.add_child(vbox)
 	
-
 func _on_gui_input(event):	
 	current_size_y.text = "Current node height: " + str(self.size.y).substr(0, 6)
 	self_pos_y.text = "Current node pos.y: " + str(self.position.y).substr(0, 6)
@@ -56,7 +55,7 @@ func _on_gui_input(event):
 		var new_height = drag_start_size + drag_offset
 		new_height = clamp(new_height, min_height, max_height)		
 		var new_position_y = drag_start_position_y + (drag_start_size - new_height)
-		new_position_y = clamp(new_position_y, 0, get_parent_area_size().y - new_height)
+		new_position_y = clamp(new_position_y, min_height, get_parent_area_size().y - new_height)
 		new_h.text = "Node new height: " + str(new_height).substr(0, 6)
 		self.size.y = new_height
 		self.position.y = new_position_y

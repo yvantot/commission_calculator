@@ -1,6 +1,6 @@
-[gd_resource type="Theme" load_steps=27 format=3 uid="uid://bylakh23f6f8b"]
+[gd_resource type="Theme" load_steps=29 format=3 uid="uid://bylakh23f6f8b"]
 
-[ext_resource type="FontFile" uid="uid://dfrabrg61xrgr" path="res://assets/Montserrat-VariableFont_wght.ttf" id="1_nqlng"]
+[ext_resource type="FontFile" uid="uid://dfrabrg61xrgr" path="res://assets/Montseratt.ttf" id="1_nqlng"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xjjpx"]
 
@@ -17,7 +17,7 @@ shadow_size = 1
 shadow_offset = Vector2(0, 3)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4gen"]
-bg_color = Color(0.64, 0.2304, 0.325973, 1)
+bg_color = Color(0.53, 0.2173, 0.290263, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -32,9 +32,20 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
-shadow_color = Color(0, 0, 0, 0.254902)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1vbcd"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.1976, 0.38, 0.27664, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.180392)
 shadow_size = 1
-shadow_offset = Vector2(0, 3)
+shadow_offset = Vector2(0, 2)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jqvlm"]
 
@@ -48,8 +59,8 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
-shadow_color = Color(0.188235, 0.364706, 0.266667, 1)
-shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.352941)
+shadow_size = 1
 shadow_offset = Vector2(0, 3)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w1sfj"]
@@ -69,7 +80,7 @@ shadow_size = 1
 shadow_offset = Vector2(0, 3)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_88din"]
-bg_color = Color(0.3162, 0.62, 0.43772, 1)
+bg_color = Color(0.5313, 0.77, 0.567105, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -127,6 +138,19 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3pel3"]
+bg_color = Color(0.0441855, 0.108442, 0.0736387, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.291359, 0.499363, 0.385661, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jt4ul"]
 content_margin_left = 10.0
 content_margin_top = 10.0
@@ -180,6 +204,8 @@ DeleteButton/styles/focus = SubResource("StyleBoxEmpty_y1k2x")
 DeleteButton/styles/hover = SubResource("StyleBoxFlat_3gpbj")
 DeleteButton/styles/normal = SubResource("StyleBoxFlat_y4gen")
 DeleteButton/styles/pressed = SubResource("StyleBoxFlat_ktulg")
+DetailElement/base_type = &"PanelContainer"
+DetailElement/styles/panel = SubResource("StyleBoxFlat_1vbcd")
 Label/colors/font_outline_color = Color(1, 1, 1, 1)
 Label/constants/outline_size = 1
 Label/font_sizes/font_size = 24
@@ -222,6 +248,7 @@ TextOnWhite/base_type = &"Label"
 TextOnWhite/colors/font_color = Color(0.159794, 0.337484, 0.239878, 1)
 TextOnWhite/colors/font_outline_color = Color(0.159794, 0.337484, 0.239878, 1)
 TextOnWhite/constants/outline_size = 2
+VSeparator/styles/separator = SubResource("StyleBoxFlat_3pel3")
 detail_list/base_type = &"PanelContainer"
 detail_list/styles/panel = SubResource("StyleBoxFlat_jt4ul")
 navigate_btn/base_type = &"Button"

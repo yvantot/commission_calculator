@@ -19,3 +19,9 @@ func navigationVisibility(page, back, forward, questionnaires, current_page):
 
 func typeIs(obj: Variant):
 	print(type_string(typeof(obj)))
+	
+func addNodes(parent: Variant, nodes: Array):
+	for node in nodes:
+		parent.add_child(node)
+
+	

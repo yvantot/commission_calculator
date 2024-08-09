@@ -1,5 +1,17 @@
 extends Control
 
+# If I have to rewrite this, I'd make the components more modular. The Main nodes will handle its children operations
+# and if a data is requested, just request with a message.
+# I would also write make functions more seperated, categorized by their function.
+# I still don't understand Godot's import system truly, but there must be a better way than importing a fuck ton of them. Of course, other than accessing them
+# from their parents. That would be node digging.
+# I think it would be a great idea to have an HTML way of creating a node, like...
+# Node
+# --Node
+# --Node
+# ----Node
+# And you don't have to manually create them imperatively everytime, you just have to do this.
+
 #region New Code Region
 # Assets
 const DELETE_ICON := preload("res://assets/delete.png")

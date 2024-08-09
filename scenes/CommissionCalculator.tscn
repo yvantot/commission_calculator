@@ -83,7 +83,6 @@ layout_mode = 2
 [node name="DetailTitle" type="Label" parent="Screen/Background/AllComponents/ScreenAdapt/ScrollContainer/CommissionDetails/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0.274388, 0.534651, 0.390787, 1)
 theme_override_font_sizes/font_size = 30
 text = "Commission Details"
 horizontal_alignment = 1

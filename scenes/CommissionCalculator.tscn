@@ -80,12 +80,24 @@ theme_override_constants/separation = 20
 [node name="VBoxContainer" type="VBoxContainer" parent="Screen/Background/AllComponents/ScreenAdapt/ScrollContainer/CommissionDetails"]
 layout_mode = 2
 
-[node name="DetailTitle" type="Label" parent="Screen/Background/AllComponents/ScreenAdapt/ScrollContainer/CommissionDetails/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Screen/Background/AllComponents/ScreenAdapt/ScrollContainer/CommissionDetails/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="DetailTitle" type="Label" parent="Screen/Background/AllComponents/ScreenAdapt/ScrollContainer/CommissionDetails/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
 text = "Commission Details"
 horizontal_alignment = 1
+
+[node name="MeasureType" type="Button" parent="Screen/Background/AllComponents/ScreenAdapt/ScrollContainer/CommissionDetails/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"MeasureType"
+text = "ft"
 
 [node name="CurrentCommissionTitle" type="Label" parent="Screen/Background/AllComponents/ScreenAdapt/ScrollContainer/CommissionDetails/VBoxContainer"]
 unique_name_in_owner = true
@@ -375,7 +387,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_h31bc")
 
 [node name="MuralMain" type="VBoxContainer" parent="Screen/QuestionnaireBG/ScreenAdaptQuestion/QuestionnaireMain/Questionnaires"]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 size_flags_vertical = 3
@@ -396,26 +407,24 @@ columns = 2
 [node name="Height" type="Label" parent="Screen/QuestionnaireBG/ScreenAdaptQuestion/QuestionnaireMain/Questionnaires/MuralMain/MAreaMain/Grid"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Height | ft"
+text = "Height"
 horizontal_alignment = 1
 
 [node name="Width" type="Label" parent="Screen/QuestionnaireBG/ScreenAdaptQuestion/QuestionnaireMain/Questionnaires/MuralMain/MAreaMain/Grid"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Width | ft"
+text = "Width"
 horizontal_alignment = 1
 
 [node name="InputHeight" type="LineEdit" parent="Screen/QuestionnaireBG/ScreenAdaptQuestion/QuestionnaireMain/Questionnaires/MuralMain/MAreaMain/Grid"]
 unique_name_in_owner = true
 layout_mode = 2
 placeholder_text = "e.g:  7"
-max_length = 3
 
 [node name="InputWidth" type="LineEdit" parent="Screen/QuestionnaireBG/ScreenAdaptQuestion/QuestionnaireMain/Questionnaires/MuralMain/MAreaMain/Grid"]
 unique_name_in_owner = true
 layout_mode = 2
 placeholder_text = "e.g: 8"
-max_length = 3
 
 [node name="Label" type="Label" parent="Screen/QuestionnaireBG/ScreenAdaptQuestion/QuestionnaireMain/Questionnaires/MuralMain/MAreaMain/Grid"]
 layout_mode = 2
@@ -436,7 +445,6 @@ placeholder_text = "e.g: 27/6/2001"
 unique_name_in_owner = true
 layout_mode = 2
 placeholder_text = "e.g: 150"
-max_length = 5
 
 [node name="Label2" type="Label" parent="Screen/QuestionnaireBG/ScreenAdaptQuestion/QuestionnaireMain/Questionnaires/MuralMain/MAreaMain/Grid"]
 layout_mode = 2
@@ -587,6 +595,7 @@ placeholder_text = "Social media"
 
 [node name="PaintingMain" type="VBoxContainer" parent="Screen/QuestionnaireBG/ScreenAdaptQuestion/QuestionnaireMain/Questionnaires"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -606,12 +615,12 @@ columns = 2
 [node name="Label" type="Label" parent="Screen/QuestionnaireBG/ScreenAdaptQuestion/QuestionnaireMain/Questionnaires/PaintingMain/PAreaMain/PAreaGC"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Width | ft"
+text = "Width"
 
 [node name="Label2" type="Label" parent="Screen/QuestionnaireBG/ScreenAdaptQuestion/QuestionnaireMain/Questionnaires/PaintingMain/PAreaMain/PAreaGC"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Height | ft"
+text = "Height"
 
 [node name="PAreaWidthLE" type="LineEdit" parent="Screen/QuestionnaireBG/ScreenAdaptQuestion/QuestionnaireMain/Questionnaires/PaintingMain/PAreaMain/PAreaGC"]
 unique_name_in_owner = true
@@ -809,12 +818,12 @@ columns = 2
 [node name="Label" type="Label" parent="Screen/QuestionnaireBG/ScreenAdaptQuestion/QuestionnaireMain/Questionnaires/SculptingMain/SAreaMain/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Width | ft"
+text = "Width"
 
 [node name="Label2" type="Label" parent="Screen/QuestionnaireBG/ScreenAdaptQuestion/QuestionnaireMain/Questionnaires/SculptingMain/SAreaMain/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Height | ft"
+text = "Height"
 
 [node name="SAreaWidthLE" type="LineEdit" parent="Screen/QuestionnaireBG/ScreenAdaptQuestion/QuestionnaireMain/Questionnaires/SculptingMain/SAreaMain/GridContainer"]
 unique_name_in_owner = true
@@ -1004,12 +1013,12 @@ columns = 2
 [node name="Label" type="Label" parent="Screen/QuestionnaireBG/ScreenAdaptQuestion/QuestionnaireMain/Questionnaires/CrochetMain/CAreaMain/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Width | ft"
+text = "Width"
 
 [node name="Label2" type="Label" parent="Screen/QuestionnaireBG/ScreenAdaptQuestion/QuestionnaireMain/Questionnaires/CrochetMain/CAreaMain/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Height | ft"
+text = "Height"
 
 [node name="CAreaWidthLE" type="LineEdit" parent="Screen/QuestionnaireBG/ScreenAdaptQuestion/QuestionnaireMain/Questionnaires/CrochetMain/CAreaMain/GridContainer"]
 unique_name_in_owner = true
@@ -1187,6 +1196,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Social media"
 
+[connection signal="pressed" from="Screen/Background/AllComponents/ScreenAdapt/ScrollContainer/CommissionDetails/VBoxContainer/HBoxContainer/MeasureType" to="." method="_on_measure_type_pressed"]
 [connection signal="pressed" from="Screen/QuestionnaireBG/ScreenAdaptQuestion/QuestionnaireMain/Header/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="Screen/QuestionnaireBG/ScreenAdaptQuestion/QuestionnaireMain/Header/Forward" to="." method="_on_forward_pressed"]
 [connection signal="pressed" from="Screen/QuestionnaireBG/ScreenAdaptQuestion/QuestionnaireMain/TypeChoose/MarginContainer/HBoxContainer/NextType" to="." method="_on_next_type_pressed"]

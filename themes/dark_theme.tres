@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=29 format=3 uid="uid://bylakh23f6f8b"]
+[gd_resource type="Theme" load_steps=34 format=3 uid="uid://bylakh23f6f8b"]
 
 [ext_resource type="FontFile" uid="uid://dfrabrg61xrgr" path="res://assets/Montseratt.ttf" id="1_nqlng"]
 
@@ -110,10 +110,57 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0q1ef"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qsdb6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_27lp8"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+bg_color = Color(0.3166, 0.558165, 0.422018, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.309804)
+shadow_size = 1
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hvo6c"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+bg_color = Color(0.231373, 0.427451, 0.317647, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.309804)
+shadow_size = 1
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rftcv"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+bg_color = Color(0.157879, 0.307273, 0.223873, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.309804)
+shadow_size = 1
+shadow_offset = Vector2(0, 2)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kard5"]
 bg_color = Color(0.230389, 0.428332, 0.318178, 1)
 corner_radius_top_left = 80
 corner_radius_top_right = 80
+corner_detail = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vlrno"]
 bg_color = Color(1, 1, 1, 1)
@@ -236,6 +283,13 @@ LongButton/styles/normal = SubResource("StyleBoxFlat_88din")
 LongButton/styles/pressed = SubResource("StyleBoxFlat_2s3b2")
 MaterialList/base_type = &"PanelContainer"
 MaterialList/styles/panel = SubResource("StyleBoxFlat_t7dgx")
+MeasureType/base_type = &"Button"
+MeasureType/constants/outline_size = 1
+MeasureType/styles/disabled = SubResource("StyleBoxEmpty_0q1ef")
+MeasureType/styles/focus = SubResource("StyleBoxEmpty_qsdb6")
+MeasureType/styles/hover = SubResource("StyleBoxFlat_27lp8")
+MeasureType/styles/normal = SubResource("StyleBoxFlat_hvo6c")
+MeasureType/styles/pressed = SubResource("StyleBoxFlat_rftcv")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_kard5")
 QuestionBox/base_type = &"PanelContainer"
 QuestionBox/styles/panel = SubResource("StyleBoxFlat_vlrno")

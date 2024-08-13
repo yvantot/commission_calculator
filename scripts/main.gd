@@ -138,6 +138,8 @@ var Util := preload("res://scripts/utilities.gd").new()
 
 #region Var States
 # Global Var States
+var current_measure := ["ft", "inch"]
+var current_measure_type := 0
 var current_comms := 0
 var current_page := 0
 const avail_comms := ["Mural", "Painting", "Crochet", "Sculpting"]
@@ -279,8 +281,14 @@ func add_size(height: LineEdit, width: LineEdit, deadline: LineEdit, rate: LineE
 		var new_deadline := Label.new()
 		var new_delete := Button.new()
 		setUpNodes(new_panel, new_vbox, new_hbox, new_delete, new_add, new_deadline, detaillist)
-						
-		var add_str : String = detail_str + ": " + height.text + " ft * " + width.text + " ft = " + " ₱" + rate.text + " / " + str(height.text.to_float() * width.text.to_float()) + " sq ft" + " = ₱" + str((height.text.to_float() * width.text.to_float()) * rate.text.to_float())
+		
+		var area = height.text.to_float() * width.text.to_float()
+		var unit = ""
+		if measure_type.text == "inch":		
+			unit = " inch"		
+		else:
+			unit = " ft"
+		var add_str : String = detail_str + ": " + height.text + unit + " * " + width.text + unit + " = " + " ₱" + rate.text + " / " + str(area) + " sq" + unit + " = ₱" + str((height.text.to_float() * width.text.to_float()) * rate.text.to_float())
 		var deadline_str: String = "Deadline: " + deadline.text
 		
 		if extrainfo != null:
@@ -375,7 +383,7 @@ func sliderDescription(value) -> String:
 
 func getTotal(area_list: VBoxContainer, expense_list: VBoxContainer, total_label: Label) -> void:
 	var total_regex := RegEx.new()	
-	total_regex.compile("₱(\\d+)$")
+	total_regex.compile("₱\\d+(?:\\.\\d{1,2})?")
 	var total_amount : float = 0
 	
 	var area_arr: Array = area_list.get_children()
@@ -384,11 +392,11 @@ func getTotal(area_list: VBoxContainer, expense_list: VBoxContainer, total_label
 	if area_arr.size() > 0:
 		for elem in area_arr:
 			if !elem.is_queued_for_deletion():
-				total_amount += total_regex.search(elem.get_child(0).get_child(0).get_child(0).text).get_string(1).to_float()			
-	if area_arr.size() > 0:
+				total_amount += total_regex.search_all(elem.get_child(0).get_child(0).get_child(0).text)[1].get_string().substr(1).to_float()
+	if expense_arr.size() > 0:
 		for elem in expense_arr:
 			if !elem.is_queued_for_deletion():
-				total_amount += total_regex.search(elem.get_child(0).get_child(0).text).get_string(1).to_float()			
+				total_amount += total_regex.search_all(elem.get_child(0).get_child(0).text)[1].get_string().substr(1).to_float()
 	
 	total_label.text = "Total: ₱" + str(total_amount)	
 	
@@ -463,3 +471,10 @@ func _on_s_area_add_bt_pressed() -> void:
 func _on_c_area_add_bt_pressed() -> void:
 	add_size(c_area_height_le, c_area_width_le, c_area_deadline_le, c_area_rate_le, c_area_detail_lb, c_area_details_vb, c_area_ply_le)
 	getTotal(c_area_details_vb, c_exp_details_vb, crochet_total)
+
+@onready var measure_type: Button = %MeasureType
+
+func _on_measure_type_pressed() -> void:	
+	current_measure_type += 1
+	current_measure_type %= current_measure.size()
+	measure_type.text = current_measure[current_measure_type]

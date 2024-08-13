@@ -614,7 +614,6 @@ bg_color = Color(0.11, 0.11, 0.11, 1)
 color = Color(1, 1, 1, 0.0784314)
 grow_begin = -6.0
 grow_end = -6.0
-thickness = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5sp0q"]
 content_margin_left = 7.0
